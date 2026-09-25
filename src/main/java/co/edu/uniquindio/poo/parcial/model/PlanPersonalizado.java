@@ -14,6 +14,10 @@ public class PlanPersonalizado extends PlanEntrenamiento {
         this.objetivo = objetivo;
     }
 
+    public PlanPersonalizado(String p01, String planPersonalizado, String descripcion, int duracionMeses, double valorMensual, TipoEstado tipoEstado, int cantidadSesiones) {
+        super(p01, planPersonalizado,descripcion, duracionMeses, valorMensual, tipoEstado, cantidadSesiones);
+    }
+
     public int getCantidadSesiones() { return cantidadSesiones; }
     public TipoEspecialidad getEspecialidad() { return especialidad; }
     public String getObjetivo() { return objetivo; }

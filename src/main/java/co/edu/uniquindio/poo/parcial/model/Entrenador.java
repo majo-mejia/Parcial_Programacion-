@@ -49,6 +49,8 @@ public class Entrenador  {
         this.tarifaSesion = tarifaSesion;
     }
 
+    Entrenador entrenador = new Entrenador("12345", "Carlos", "3001234567", TipoEspecialidad.DEFINICION, 20000.0);
+
     @Override
     public String toString() {
         return nombre + " - " + especialidad;

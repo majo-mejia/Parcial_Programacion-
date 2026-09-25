@@ -15,4 +15,5 @@ public class PlanBasico extends PlanEntrenamiento {
     public double calcularValor() {
         return getValorMensual() * getDuracionMeses();
     }
+    PlanBasico plan = new PlanBasico("P01", "Plan Mensual", "Descripcion", 1, 100000.0, TipoEstado.ACTIVO, "Beneficio basico");
 }

@@ -21,6 +21,17 @@ public abstract class PlanEntrenamiento {
         this.tipo = tipo;
     }
 
+    public PlanEntrenamiento(String nombre, double valorMensual, TipoPlan tipo) {
+    this.nombre = nombre;
+        this.valorMensual = valorMensual;
+        this.tipo = tipo;
+    }
+
+    public PlanEntrenamiento(String planBasico, String planPersonalizado, String descripcion, int duracionMeses, double valorMensual, TipoEstado tipoEstado, int cantidadSesiones) {
+        this(planBasico, 0.0, null); // Llama al constructor principal
+        this.codigo = planBasico;
+    }
+
     public abstract double calcularValor();
 
     public String getCodigo() { return codigo; }

@@ -19,6 +19,9 @@ public class Cliente {
         this.fechaRegistro = fechaRegistro;
     }
 
+    public Cliente(String number, String juanPerez, String number1, String correo) {
+    }
+
     public boolean esNumeroPerfecto() {
         try {
             int numero = Integer.parseInt(telefono);
