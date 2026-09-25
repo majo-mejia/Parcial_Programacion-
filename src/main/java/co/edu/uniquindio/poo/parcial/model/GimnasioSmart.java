@@ -24,11 +24,11 @@ public class GimnasioSmart {
     private String correo = "smartgym@gmail.com";
     private String paginaWeb = "www.smartgym.com";
 
-    // Constructor privado para aplicar Singleton
+    // constructor privado por el singleton
     private GimnasioSmart() {
     }
 
-    // Retorna la única instancia del gimnasio
+    // metodo del singletoon
     public static GimnasioSmart getInstancia() {
 
         if (instancia == null) {
@@ -38,7 +38,7 @@ public class GimnasioSmart {
         return instancia;
     }
 
-    // Registrar información
+    // registra información
 
     public void registrarCliente(Cliente cliente) {
         clientes.add(cliente);
@@ -60,7 +60,7 @@ public class GimnasioSmart {
         inscripciones.add(inscripcion);
     }
 
-    // Eliminar cliente
+    // elimina cliente
 
     public boolean eliminarCliente(String documento) {
 
@@ -77,7 +77,7 @@ public class GimnasioSmart {
         return false;
     }
 
-    // Eliminar entrenador
+    // elimina entrenador
 
     public boolean eliminarEntrenador(String identificacion) {
 
@@ -94,7 +94,7 @@ public class GimnasioSmart {
         return false;
     }
 
-    // Eliminar plan
+    // elimina plan
 
     public boolean eliminarPlan(String codigo) {
 
@@ -111,7 +111,7 @@ public class GimnasioSmart {
         return false;
     }
 
-    // Eliminar servicio
+    // elimina servicio
 
     public boolean eliminarServicio(String codigo) {
 
@@ -128,7 +128,7 @@ public class GimnasioSmart {
         return false;
     }
 
-    // Buscar cliente por documento
+    // busca cliente por documento
 
     public Cliente buscarCliente(String documento) {
 
@@ -142,7 +142,7 @@ public class GimnasioSmart {
         return null;
     }
 
-    // Buscar cliente por teléfono
+    // busca cliente por telefono
 
     public Cliente buscarClientePorTelefono(String telefono) {
 
@@ -156,7 +156,7 @@ public class GimnasioSmart {
         return null;
     }
 
-    // Buscar entrenador
+    // busca un entrenador
 
     public Entrenador buscarEntrenador(String identificacion) {
 
@@ -170,7 +170,7 @@ public class GimnasioSmart {
         return null;
     }
 
-    // Buscar plan
+    // se puede buscar el plan
 
     public PlanEntrenamiento buscarPlan(String codigo) {
 
@@ -184,7 +184,7 @@ public class GimnasioSmart {
         return null;
     }
 
-    // Calcular ingresos en un periodo
+    // metodo de calcular ingresos de un periodo
 
     public double calcularIngresos(LocalDate inicio, LocalDate fin) {
 
@@ -202,7 +202,7 @@ public class GimnasioSmart {
         return total;
     }
 
-    // Getters de las listas
+    // getters
 
     public List<Cliente> getClientes() {
         return clientes;
