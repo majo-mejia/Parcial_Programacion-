@@ -4,96 +4,60 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Inscripcion implements Calculable {
-
-    private LocalDate fechaInscripcion;
+public class Inscripcion {
+    private int numero;
     private Cliente cliente;
     private PlanEntrenamiento plan;
+    private LocalDate fecha;
     private Entrenador entrenador;
-    private List<ServicioAdicional> serviciosAdicionales;
-    private double porcentajeDescuento;
+    private List<ServicioAdicional> servicios = new ArrayList<>();
+    private double descuento;
 
-    public Inscripcion(LocalDate fechaInscripcion, Cliente cliente, PlanEntrenamiento plan) {
-        this.fechaInscripcion = fechaInscripcion;
+    public Inscripcion(int numero, Cliente cliente, PlanEntrenamiento plan,
+                       LocalDate fecha, Entrenador entrenador, double descuento) {
+        this.numero = numero;
         this.cliente = cliente;
         this.plan = plan;
-        serviciosAdicionales = new ArrayList<>();
-        porcentajeDescuento = 0;
-    }
-
-    public void asignarEntrenador(Entrenador entrenador) {
+        this.fecha = fecha;
         this.entrenador = entrenador;
+        this.descuento = descuento;
     }
 
-    public void agregarServicioAdicional(ServicioAdicional servicio) {
-        serviciosAdicionales.add(servicio);
+    public void agregarServicio(ServicioAdicional servicio) {
+        if (servicio != null && servicio.isDisponible()) {
+            servicios.add(servicio);
+        }
     }
 
-    public void quitarServicioAdicional(ServicioAdicional servicio) {
-        serviciosAdicionales.remove(servicio);
-    }
-
-    public double calcularValorFinal() {
+    public double calcularTotal() {
         double total = plan.calcularValor();
 
-        for (ServicioAdicional servicio : serviciosAdicionales) {
-            total += servicio.calcularValor();
+        for (ServicioAdicional servicio : servicios) {
+            total = total + servicio.getPrecio();
         }
 
         if (plan instanceof PlanPersonalizado && entrenador != null) {
-            PlanPersonalizado personalizado = (PlanPersonalizado) plan;
-            total += personalizado.getCantidadSesiones() * entrenador.getTarifaSesion();
+            PlanPersonalizado planPersonalizado = (PlanPersonalizado) plan;
+            total = total + planPersonalizado.getCantidadSesiones() * entrenador.getTarifaSesion();
         }
 
-        return total - (total * porcentajeDescuento);
+        total = total - total * (descuento / 100.0);
+        return total;
     }
 
-    @Override
-    public double calcularValor() {
-        return calcularValorFinal();
-    }
-
-    public LocalDate getFechaInscripcion() { return fechaInscripcion; }
-    public void setFechaInscripcion(LocalDate fechaInscripcion) { this.fechaInscripcion = fechaInscripcion; }
-
+    public int getNumero() { return numero; }
     public Cliente getCliente() { return cliente; }
-    public void setCliente(Cliente cliente) { this.cliente = cliente; }
-
     public PlanEntrenamiento getPlan() { return plan; }
-    public void setPlan(PlanEntrenamiento plan) { this.plan = plan; }
+    public LocalDate getFecha() { return fecha; }
+    public double getDescuento() { return descuento; }
 
-    public Entrenador getEntrenador() { return entrenador; }
-
-    public List<ServicioAdicional> getServiciosAdicionales() { return serviciosAdicionales; }
-
-    public String getClienteNombre() {
-        return cliente.getNombre();
-    }
-
-    public String getPlanNombre() {
-        return plan.getNombre();
-    }
-
-    public String getEntrenadorNombre() {
-        return entrenador == null ? "Sin asignar" : entrenador.getNombre();
-    }
-
-    public double getValor() {
-        return calcularValorFinal();
-    }
-
-    public double getPorcentajeDescuento() { return porcentajeDescuento; }
-
-    public void setPorcentajeDescuento(double porcentajeDescuento) {
-        if (porcentajeDescuento < 0 || porcentajeDescuento > 1) {
-            throw new IllegalArgumentException("El descuento debe estar entre 0 y 1.");
-        }
-        this.porcentajeDescuento = porcentajeDescuento;
+    public String getDescripcion() {
+        return numero + " - " + cliente.getNombre() + " - " + plan.getNombre()
+                + " - " + fecha + " - $" + String.format("%.0f", calcularTotal());
     }
 
     @Override
     public String toString() {
-        return "Inscripción de " + cliente.getNombre() + " - "
-                + plan.getNombre() + " = $" + String.format("%.2f", calcularValorFinal());
+        return getDescripcion();
     }
 }
