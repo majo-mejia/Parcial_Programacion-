@@ -79,13 +79,13 @@ public class GimnasioSmart {
 
     // elimina entrenador
 
-    public boolean eliminarEntrenador(String identificacion) {
+    public boolean eliminarEntrenador(String documento) {
 
         for (int i = 0; i < entrenadores.size(); i++) {
 
             Entrenador entrenador = entrenadores.get(i);
 
-            if (entrenador.getIdentificacion().equals(identificacion)) {
+            if (entrenador.getDocumento().equals(documento)) {
                 entrenadores.remove(i);
                 return true;
             }
@@ -162,7 +162,7 @@ public class GimnasioSmart {
 
         for (Entrenador entrenador : entrenadores) {
 
-            if (entrenador.getIdentificacion().equals(identificacion)) {
+            if (entrenador.getDocumento().equals(identificacion)) {
                 return entrenador;
             }
         }
