@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uniquindio.poo.parcial.controller.InscripcionController">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <top>
+        <VBox spacing="8">
+            <GridPane hgap="8" vgap="8">
+
+                <Label text="Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="cliente" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Plan:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="plan" prefWidth="200" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                <Label text="Entrenador:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <ComboBox fx:id="entrenador" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Fecha:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                <DatePicker fx:id="fecha" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+                <Label text="Descuento %:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="descuento" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <Label text="Servicios adicionales:" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                <ListView fx:id="servicios" prefHeight="100"
+                          GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+
+            </GridPane>
+
+            <HBox spacing="8">
+                <Button text="Actualizar listas" onAction="#actualizarListas"/>
+                <Button text="Registrar inscripción" onAction="#registrarInscripcion"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tabla">
+            <columns>
+                <TableColumn fx:id="columnaNumero" text="Número" prefWidth="80"/>
+                <TableColumn fx:id="columnaDescripcion" text="Inscripción" prefWidth="600"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>
